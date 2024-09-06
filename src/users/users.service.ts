@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
-import { UsersModel } from 'src/users/users.model';
+import { User as UsersModel } from 'src/users/users.model';
 import { User } from 'src/users/entities/user.entity';
 
 @Injectable()
@@ -16,5 +16,9 @@ export class UsersService {
 
   async findAll(): Promise<UsersModel[]> {
     return this.userModel.findAll();
+  }
+
+  async findOneByEmail(email: string): Promise<UsersModel> {
+    return this.userModel.findOne({ where: { email } });
   }
 }
