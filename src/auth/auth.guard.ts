@@ -27,8 +27,8 @@ export class JwtAuthGuard implements CanActivate {
         secret: this.configService.get<string>('JWT_SECRET'),
       });
       return true;
-    } catch {
-      throw new UnauthorizedException('Invalid access token');
+    } catch (e) {
+      throw new UnauthorizedException(e);
     }
   }
 }

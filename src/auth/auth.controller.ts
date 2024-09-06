@@ -24,9 +24,7 @@ export class AuthController {
       });
 
       res.cookie('accessToken', accessToken, {
-        httpOnly: true,
         secure: process.env.NODE_ENV === 'production',
-        maxAge: 3 * 60 * 1000, // 3 minutes
       });
 
       return res
@@ -51,9 +49,7 @@ export class AuthController {
       const { accessToken } = await this.authService.refreshToken(refreshToken);
 
       res.cookie('accessToken', accessToken, {
-        httpOnly: true,
         secure: process.env.NODE_ENV === 'production',
-        maxAge: 3 * 60 * 1000, // 3 minutes
       });
       return res.status(HttpStatus.OK).json({ accessToken });
     }
